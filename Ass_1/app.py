@@ -17,18 +17,14 @@ def index():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    try:
-        # Get sepal length value from the form
+    
+        
         sl_value = float(request.form['sepal_length'])
 
-        # Make a prediction using the loaded model
         prediction = model.predict([[sl_value]])[0]
 
-        return render_template('result.html', sepal_length=sl_value, prediction=prediction)
+        return render_template('prediction.html', sepal_length=sl_value, prediction=prediction)
     
-    except Exception as e:
-        error_message = f"Error: {str(e)}"
-        return render_template('error.html', error_message=error_message)
 
 if __name__ == '__main__':
     app.run(debug=True)
